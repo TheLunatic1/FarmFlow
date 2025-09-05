@@ -23,7 +23,7 @@ const char* mqtt_password = "yDw%iF@0Gc7MqSjZ24.,";
 const char* mqtt_client_id = "Farm_flow_fr1";
 
 // ================== MQTT Topics ==================
-const char* topic_sensors = "sensors/data";
+const char* topic_sensors = "topic_farmer1";
 
 // ================== Pin Assignments ==================
 // Sensors
