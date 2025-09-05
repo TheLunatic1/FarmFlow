@@ -157,15 +157,19 @@ void mqttCallback(char* topic, byte* message, unsigned int length) {
     Serial.print("Setting shade servo to status: ");
     Serial.println(status);
     if (status == "on") {
-      shadeServo.write(90); // Assuming 90 degrees as "on" position (adjust as needed)
+      shadeServo.write(90); // Assuming 90 degrees as "on" position
     } else if (status == "off") {
-      shadeServo.write(0);  // Assuming 0 degrees as "off" position (adjust as needed)
+      shadeServo.write(0);  // Assuming 0 degrees as "off" position
     }
   } else if (actuator == "stepper") {
-    int steps = doc["steps"];
-    Serial.print("Moving stepper motor by steps: ");
-    Serial.println(steps);
-    myStepper.step(steps);
+    String status = doc["status"];
+    Serial.print("Setting stepper motor to status: ");
+    Serial.println(status);
+    if (status == "on") {
+      myStepper.step(512); // Move to a fixed "on" position (e.g., 512 steps)
+    } else if (status == "off") {
+      myStepper.step(-512); // Return to "off" position (e.g., reverse 512 steps)
+    }
   } else if (actuator == "motor") {
     int speed = doc["speed"];
     Serial.print("Setting motor speed to: ");
